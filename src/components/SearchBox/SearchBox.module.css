@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin-bottom: 25px;
+}
+
+.container label {
+  font-size: 18px;
+  font-weight: bold;
+}
+.search {
+  width: 300px;
+  padding: 2px 20px 2px 8px;
+  font-size: 18px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.closeBtn {
+  border: none;
+  background-color: transparent;
+  width: 16px;
+  height: 16px;
+
+  position: absolute;
+  top: 6px;
+  right: 10px;
+}
+
+.closeBtn:hover svg {
+  fill: black;
+}
