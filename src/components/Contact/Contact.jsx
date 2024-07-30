@@ -1,30 +1,18 @@
+import { useDispatch } from "react-redux";
+
 import { FaUserLarge, FaPhone } from "react-icons/fa6";
 
-import css from "./Contact.module.css";
-
-import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/contactsOps";
-import toast from "react-hot-toast";
+import { notifyOnContactRemove } from "../../helpers/hotToasters";
 
-const notify = () =>
-  toast.success("Contact removed", {
-    style: {
-      border: "1px solid #713200",
-      padding: "16px",
-      color: "lightpink",
-    },
-    iconTheme: {
-      primary: "lightpink",
-      secondary: "#FFFAEE",
-    },
-  });
+import css from "./Contact.module.css";
 
 export default function Contact({ contactInfo: { name, number, id } }) {
   const dispatch = useDispatch();
 
   const onDelete = () => {
     dispatch(deleteContact(id));
-    notify();
+    notifyOnContactRemove();
   };
 
   return (

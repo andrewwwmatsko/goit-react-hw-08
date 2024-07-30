@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { notifyOnLogIn } from "../../helpers/hotToasters";
 
 axios.defaults.baseURL = "https://connections-api.goit.global";
 
@@ -12,6 +13,7 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post("/users/signup", credentials);
+      notifyOnLogIn(response.data.user.name);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {
@@ -25,6 +27,7 @@ export const login = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post("/users/login", credentials);
+      notifyOnLogIn(response.data.user.name);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {

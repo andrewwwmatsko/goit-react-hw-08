@@ -1,15 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import toast from "react-hot-toast";
 
 import { useId } from "react";
 import { useDispatch } from "react-redux";
 
 import { addContact } from "../../redux/contacts/contactsOps";
 
+import { notifyOnContactAdd } from "../../helpers/hotToasters";
 import css from "./ContactForm.module.css";
-
-const notify = () => toast.success("Contact created!");
 
 export default function ContactForm() {
   const dispatch = useDispatch();
@@ -24,7 +22,7 @@ export default function ContactForm() {
 
   const handleSubmit = (values, action) => {
     dispatch(addContact({ ...values }));
-    notify();
+    notifyOnContactAdd();
     action.resetForm();
   };
 

@@ -25,7 +25,7 @@ export default function RegisterForm() {
         .max(50, "Too long!")
         .required("Required"),
       email: Yup.string().email().required("Required"),
-      password: Yup.string().min(6, "Too Short!").required("Required"),
+      password: Yup.string().min(7, "Too Short!").required("Required"),
     },
     { strict: true }
   );
