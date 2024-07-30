@@ -35,13 +35,15 @@ export default function SearchBox() {
             dispatch(changeFilter(evt.target.value));
           }}
         />
-        <button
-          className={css.closeBtn}
-          type="button"
-          onClick={handleClearInput}
-        >
-          <AiOutlineCloseCircle size={16} />
-        </button>
+        {value.length > 0 && (
+          <button
+            className={css.closeBtn}
+            type="button"
+            onClick={handleClearInput}
+          >
+            <AiOutlineCloseCircle size={16} />
+          </button>
+        )}
       </div>
     </div>
   );

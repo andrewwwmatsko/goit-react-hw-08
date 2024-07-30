@@ -5,8 +5,6 @@ import { lazy, Suspense } from "react";
 
 import { Toaster } from "react-hot-toast";
 
-// import { selectError, selectLoading } from "../../redux/contacts/contactsSlice";
-
 import Loader from "../Loader/Loader";
 
 import AppBar from "../AppBar/AppBar";
@@ -19,8 +17,6 @@ const RegisterPage = lazy(() =>
   import("../../pages/RegisterPage/RegisterPage")
 );
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
-
-// import css from "./App.module.css";
 
 export default function App() {
   // const error = useSelector(selectError);

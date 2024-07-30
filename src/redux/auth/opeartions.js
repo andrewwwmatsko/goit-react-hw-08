@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { notifyOnLogIn } from "../../helpers/hotToasters";
+import { notifyOnLogIn, notifyOnLogOut } from "../../helpers/hotToasters";
 
 axios.defaults.baseURL = "https://connections-api.goit.global";
 
@@ -40,6 +40,7 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
     const response = await axios.post("/users/logout");
     setAuthHeader("");
+    notifyOnLogOut();
     return response.data;
   } catch (e) {
     setAuthHeader("");

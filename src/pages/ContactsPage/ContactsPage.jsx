@@ -5,6 +5,7 @@ import { fetchContacts } from "../../redux/contacts/contactsOps";
 import { selectFilteredContacts } from "../../redux/contacts/contactsSlice";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import SearchBox from "../../components/SearchBox/SearchBox";
+import Layout from "../../components/Layout/Layout";
 
 import css from "./ContactPage.module.css";
 
@@ -15,18 +16,21 @@ export default function Contactspage() {
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
+
   return (
     <main>
       <section className={css.section}>
-        <div className={css.formWrapper}>
-          <ContactForm />
-        </div>
-        <div className={css.searchWrapper}>
-          <SearchBox />
-        </div>
-        <div className={css.contactsWrapper}>
-          <ContactList contacts={contacts} />
-        </div>
+        <Layout>
+          <div className={css.formWrapper}>
+            <ContactForm />
+          </div>
+          <div className={css.searchWrapper}>
+            <SearchBox />
+          </div>
+          <div className={css.contactsWrapper}>
+            <ContactList contacts={contacts} />
+          </div>
+        </Layout>
       </section>
     </main>
   );

@@ -1,16 +1,20 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 import { useId } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { addContact } from "../../redux/contacts/contactsOps";
 
-import { notifyOnContactAdd } from "../../helpers/hotToasters";
 import css from "./ContactForm.module.css";
+
+import { selectLoading } from "../../redux/contacts/contactsSlice";
 
 export default function ContactForm() {
   const dispatch = useDispatch();
+
+  const loading = useSelector(selectLoading);
 
   const nameId = useId();
   const numberId = useId();
@@ -22,7 +26,6 @@ export default function ContactForm() {
 
   const handleSubmit = (values, action) => {
     dispatch(addContact({ ...values }));
-    notifyOnContactAdd();
     action.resetForm();
   };
 
@@ -61,9 +64,16 @@ export default function ContactForm() {
           <ErrorMessage name="number" component="span" className={css.error} />
         </div>
 
-        <button type="submit" className={css.button}>
-          Add contact
-        </button>
+        <LoadingButton
+          type="submit"
+          size="small"
+          loading={loading}
+          loadingIndicator="Loading…"
+          variant="outlined"
+          className={css.button}
+        >
+          <span>Add contact</span>
+        </LoadingButton>
       </Form>
     </Formik>
   );

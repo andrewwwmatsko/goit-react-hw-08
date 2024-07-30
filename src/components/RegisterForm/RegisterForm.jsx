@@ -1,12 +1,16 @@
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId } from "react";
+import LoadingButton from "@mui/lab/LoadingButton";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/auth/opeartions";
+
 import css from "./RegisterForm.module.css";
+import { selectLoading } from "../../redux/auth/selectors";
 
 export default function RegisterForm() {
+  const loading = useSelector(selectLoading);
   const dispatch = useDispatch();
 
   const nameId = useId();
@@ -14,7 +18,13 @@ export default function RegisterForm() {
   const passwordId = useId();
 
   const handleSubmit = (values, action) => {
-    dispatch(register(values));
+    dispatch(
+      register({
+        name: values.name.trim(),
+        email: values.email.trim(),
+        password: values.password.trim(),
+      })
+    );
     action.resetForm();
   };
 
@@ -44,11 +54,7 @@ export default function RegisterForm() {
               Name
             </label>
             <Field id={nameId} name="name" className={css.input} />
-            <ErrorMessage
-              name="username"
-              component="span"
-              className={css.error}
-            />
+            <ErrorMessage name="name" component="span" className={css.error} />
           </div>
 
           <div className={css.inputWrapper}>
@@ -76,9 +82,15 @@ export default function RegisterForm() {
             />
           </div>
 
-          <button type="submit" className={css.btn}>
-            Submit
-          </button>
+          <LoadingButton
+            type="submit"
+            loading={loading}
+            loadingIndicator="Loading…"
+            variant="outlined"
+            className={css.btn}
+          >
+            <span>Register</span>
+          </LoadingButton>
         </Form>
       </Formik>
     </>

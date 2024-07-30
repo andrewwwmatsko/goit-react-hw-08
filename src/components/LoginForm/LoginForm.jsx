@@ -1,21 +1,29 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId } from "react";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 import { login } from "../../redux/auth/opeartions";
+import { selectLoading } from "../../redux/auth/selectors";
 
 import css from "./LoginForm.module.css";
 
 export default function LoginForm() {
+  const loading = useSelector(selectLoading);
   const dispatch = useDispatch();
 
   const emailId = useId();
   const passwordId = useId();
 
   const handleSubmit = (values, action) => {
-    dispatch(login(values));
+    dispatch(
+      login({
+        email: values.email.trim(),
+        password: values.password.trim(),
+      })
+    );
     action.resetForm();
   };
 
@@ -62,9 +70,15 @@ export default function LoginForm() {
             />
           </div>
 
-          <button type="submit" className={css.btn}>
-            Submit
-          </button>
+          <LoadingButton
+            type="submit"
+            loading={loading}
+            loadingIndicator="Loading…"
+            variant="outlined"
+            className={css.btn}
+          >
+            <span>Log in</span>
+          </LoadingButton>
         </Form>
       </Formik>
     </>

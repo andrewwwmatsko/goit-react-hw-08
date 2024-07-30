@@ -20,7 +20,17 @@ export const notifyOnLogIn = (username) =>
     icon: "👋🏻",
     style: {
       borderRadius: "10px",
-      background: "rgb(240, 230, 231)",
+      background: "lightpink",
+      color: "#fff",
+    },
+  });
+
+export const notifyOnLogOut = () =>
+  toast("GoodBye!", {
+    icon: "✌🏻",
+    style: {
+      borderRadius: "10px",
+      background: "lightpink",
       color: "#fff",
     },
   });
