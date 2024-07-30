@@ -9,7 +9,7 @@ export default function Navigation() {
   const isLoggedin = useSelector(selectIsLoggedIn);
 
   return (
-    <nav>
+    <nav className={css.nav}>
       <Link to="/" className={css.link}>
         Home
       </Link>
