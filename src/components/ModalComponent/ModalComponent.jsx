@@ -9,7 +9,7 @@ import {
 
 export default function ModalComponent({ isOpen, onClose, onDelete }) {
   return (
-    <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
+    <Modal backdrop={"blur"} isOpen={isOpen} onClose={onClose}>
       <ModalContent>
         {(onClose) => (
           <>
