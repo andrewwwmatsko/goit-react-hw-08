@@ -8,7 +8,8 @@ import { selectError, selectLoading } from "../../redux/contacts/contactsSlice";
 
 import Loader from "../Loader/Loader";
 
-import Header from "../Header/Header";
+import AppBar from "../AppBar/AppBar";
+import Layout from "../Layout/Layout";
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const ContactsPage = lazy(() =>
   import("../../pages/ContactsPage/ContactsPage")
@@ -36,8 +37,8 @@ export default function App() {
   // }, [dispatch]);
 
   return (
-    <>
-      <Header />
+    <Layout>
+      <AppBar />
 
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
@@ -47,7 +48,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </Suspense>
-    </>
+    </Layout>
   );
 }
 
