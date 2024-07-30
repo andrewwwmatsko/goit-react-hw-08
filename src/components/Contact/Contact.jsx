@@ -4,12 +4,27 @@ import css from "./Contact.module.css";
 
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/contactsOps";
+import toast from "react-hot-toast";
+
+const notify = () =>
+  toast.success("Contact removed", {
+    style: {
+      border: "1px solid #713200",
+      padding: "16px",
+      color: "lightpink",
+    },
+    iconTheme: {
+      primary: "lightpink",
+      secondary: "#FFFAEE",
+    },
+  });
 
 export default function Contact({ contactInfo: { name, number, id } }) {
   const dispatch = useDispatch();
 
   const onDelete = () => {
     dispatch(deleteContact(id));
+    notify();
   };
 
   return (

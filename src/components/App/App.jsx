@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 
-import { useDispatch, useSelector } from "react-redux";
-import { lazy, Suspense, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { lazy, Suspense } from "react";
 
-import { fetchContacts } from "../../redux/contacts/contactsOps";
-import { selectError, selectLoading } from "../../redux/contacts/contactsSlice";
+import { Toaster } from "react-hot-toast";
+
+// import { selectError, selectLoading } from "../../redux/contacts/contactsSlice";
 
 import Loader from "../Loader/Loader";
 
@@ -19,16 +20,11 @@ const RegisterPage = lazy(() =>
 );
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 
-import ContactForm from "../ContactForm/ContactForm";
-import SearchBox from "../SearchBox/SearchBox";
-import ContactList from "../ContactList/ContactList";
-import Error from "../Error/Error";
-
-import css from "./App.module.css";
+// import css from "./App.module.css";
 
 export default function App() {
-  const error = useSelector(selectError);
-  const loading = useSelector(selectLoading);
+  // const error = useSelector(selectError);
+  // const loading = useSelector(selectLoading);
 
   // const dispatch = useDispatch();
 
@@ -48,6 +44,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </Suspense>
+      <Toaster />
     </Layout>
   );
 }
