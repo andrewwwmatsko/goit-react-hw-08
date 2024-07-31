@@ -6,11 +6,15 @@ import ContactList from "../../components/ContactList/ContactList";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Layout from "../../components/Layout/Layout";
+import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
 
 import { fetchContacts } from "../../redux/contacts/contactsOps";
 import {
   selectCurrentContact,
+  selectError,
   selectFilteredContacts,
+  selectLoading,
 } from "../../redux/contacts/selectors";
 
 import css from "./ContactPage.module.css";
@@ -18,6 +22,8 @@ import EditForm from "../../components/EditForm/EditForm";
 
 export default function Contactspage() {
   const contacts = useSelector(selectFilteredContacts);
+  const isLoading = useSelector(selectLoading);
+  const isError = useSelector(selectError);
 
   const currentContact = useSelector(selectCurrentContact);
 
@@ -37,9 +43,13 @@ export default function Contactspage() {
           <div className={css.searchWrapper}>
             <SearchBox />
           </div>
-          <div className={css.contactsWrapper}>
-            <ContactList contacts={contacts} />
-          </div>
+          {contacts.length > 0 && (
+            <div className={css.contactsWrapper}>
+              <ContactList contacts={contacts} />
+            </div>
+          )}
+          {isLoading && <Loader />}
+          {isError && <Error />}
         </Layout>
       </section>
     </main>
