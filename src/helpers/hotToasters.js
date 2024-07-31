@@ -15,6 +15,8 @@ export const notifyOnContactRemove = () =>
 
 export const notifyOnContactAdd = () => toast.success("Contact created!");
 
+export const notifyOnContactEdit = () => toast.success("Contact edited!");
+
 export const notifyOnLogIn = (username) =>
   toast(`Hello, ${username}`, {
     icon: "👋🏻",

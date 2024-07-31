@@ -1,18 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
-import ContactList from "../../components/ContactList/ContactList";
 import { useEffect } from "react";
-import { fetchContacts } from "../../redux/contacts/contactsOps";
-import { selectFilteredContacts } from "../../redux/contacts/contactsSlice";
+
+import ContactList from "../../components/ContactList/ContactList";
+
 import ContactForm from "../../components/ContactForm/ContactForm";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Layout from "../../components/Layout/Layout";
 
+import { fetchContacts } from "../../redux/contacts/contactsOps";
+import {
+  selectCurrentContact,
+  selectFilteredContacts,
+} from "../../redux/contacts/selectors";
+
 import css from "./ContactPage.module.css";
+import EditForm from "../../components/EditForm/EditForm";
 
 export default function Contactspage() {
+  const contacts = useSelector(selectFilteredContacts);
+
+  const currentContact = useSelector(selectCurrentContact);
+
   const dispatch = useDispatch();
 
-  const contacts = useSelector(selectFilteredContacts);
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
@@ -22,7 +32,7 @@ export default function Contactspage() {
       <section className={css.section}>
         <Layout>
           <div className={css.formWrapper}>
-            <ContactForm />
+            {currentContact === null ? <ContactForm /> : <EditForm />}
           </div>
           <div className={css.searchWrapper}>
             <SearchBox />

@@ -5,8 +5,6 @@ import {
   selectNameFilter,
 } from "../../redux/filters/filtersSlice";
 
-import { useId } from "react";
-
 import css from "./SearchBox.module.css";
 
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -14,8 +12,6 @@ import { TextField } from "@mui/material";
 
 export default function SearchBox() {
   const dispatch = useDispatch();
-
-  const id = useId();
 
   const handleClearInput = () => {
     dispatch(changeFilter(""));

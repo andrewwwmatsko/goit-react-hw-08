@@ -1,18 +1,26 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+
 import LoadingButton from "@mui/lab/LoadingButton";
+import { Button, TextField } from "@mui/material";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { addContact } from "../../redux/contacts/contactsOps";
+import { editContact } from "../../redux/contacts/contactsOps";
 
-import css from "./ContactForm.module.css";
+import {
+  selectCurrentContact,
+  selectLoading,
+} from "../../redux/contacts/selectors";
 
-import { selectLoading } from "../../redux/contacts/selectors";
-import { TextField } from "@mui/material";
+import { setCurrentContact } from "../../redux/contacts/contactsSlice";
 
-export default function ContactForm() {
+import css from "./EditForm.module.css";
+
+export default function EditForm() {
   const dispatch = useDispatch();
+
+  const { name, number, id } = useSelector(selectCurrentContact);
 
   const loading = useSelector(selectLoading);
 
@@ -21,33 +29,38 @@ export default function ContactForm() {
       name: Yup.string("Must be a string!")
         .min(3, "Too short!")
         .max(50, "Too long!")
-        .required("Required")
-        .trim(),
+        .required("Required"),
       number: Yup.string()
         .min(3, "Too Short!")
         .max(50, "Too Long!")
-        .required("Required")
-        .trim(),
+        .required("Required"),
     },
     { strict: true }
   );
 
+  const initialValues = {
+    name,
+    number,
+  };
+
   const formik = useFormik({
-    initialValues: {
-      name: "",
-      number: "",
-    },
+    initialValues: initialValues,
 
     validationSchema: ValidationSchema,
+
     onSubmit: (values, action) => {
-      dispatch(addContact({ ...values }));
+      dispatch(editContact({ ...values, id }));
       action.resetForm();
     },
   });
 
+  const onCancelClick = () => {
+    dispatch(setCurrentContact(null));
+  };
+
   return (
     <form onSubmit={formik.handleSubmit} className={css.container}>
-      <h2 className="font-mono mb-1 text-2xl">Add contact</h2>
+      <h2 className="font-mono mb-1 text-2xl">Edit contact</h2>
 
       <TextField
         fullWidth
@@ -74,19 +87,32 @@ export default function ContactForm() {
         helperText={formik.touched.number && formik.errors.number}
       />
 
-      <LoadingButton
-        type="submit"
-        size="small"
-        loading={loading}
-        loadingIndicator="Loading…"
-        variant="outlined"
-        className={css.button}
-        sx={{
-          fontSize: 16,
-        }}
-      >
-        <span>Add </span>
-      </LoadingButton>
+      <div className="">
+        <LoadingButton
+          type="submit"
+          size="small"
+          loading={loading}
+          loadingIndicator="Loading…"
+          variant="outlined"
+          className={css.button}
+          sx={{
+            fontSize: 16,
+            marginRight: 1,
+          }}
+        >
+          <span>Edit</span>
+        </LoadingButton>
+
+        <Button
+          variant="outlined"
+          color="error"
+          sx={{ fontSize: 15 }}
+          className={css.cancelButton}
+          onClick={onCancelClick}
+        >
+          Cancel
+        </Button>
+      </div>
     </form>
   );
 }

@@ -1,26 +1,24 @@
-import { useDispatch } from "react-redux";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { useDispatch, useSelector } from "react-redux";
 
-import { FaUserLarge, FaPhone } from "react-icons/fa6";
 import { useDisclosure } from "@nextui-org/modal";
+
+import { Card, CardHeader, CardBody } from "@nextui-org/react";
+
+import ModalComponent from "../ModalComponent/ModalComponent";
 
 import { deleteContact } from "../../redux/contacts/contactsOps";
 
-import css from "./Contact.module.css";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Divider,
-  Link,
-  Image,
-} from "@nextui-org/react";
-
-import ModalComponent from "../ModalComponent/ModalComponent";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton } from "@mui/material";
+import { MdEdit } from "react-icons/md";
+import { setCurrentContact } from "../../redux/contacts/contactsSlice";
+import { selectCurrentContact } from "../../redux/contacts/selectors";
 
 export default function Contact({ contactInfo: { name, number, id } }) {
+  const currentContact = useSelector(selectCurrentContact);
+
+  const shouldBeDisabled = currentContact ? true : false;
+
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -32,33 +30,26 @@ export default function Contact({ contactInfo: { name, number, id } }) {
     dispatch(deleteContact(id));
   };
 
+  const onSetCurrentContact = () => {
+    dispatch(setCurrentContact({ name, number, id }));
+  };
+
   return (
-    // <div className={css.container}>
-    //   <div>
-    //     <div className={css.contactsInfo}>
-    // <FaUserLarge size={24} />
-    //       <p className={css.name}>{name}</p>
-    //     </div>
-
-    //     <div className={css.contactsInfo}>
-    //       <FaPhone size={24} />
-    //       <p className={css.number}>{number}</p>
-    //     </div>
-    //   </div>
-    // <IconButton aria-label="delete" onClick={onDelete}>
-    //   <DeleteIcon />
-    // </IconButton>
-    // <ModalComponent
-    //   isOpen={isOpen}
-    //   onClose={onClose}
-    //   onDelete={onSureDelete}
-    // />
-    // </div>
-
     <Card className="max-w-[400px]">
       <CardHeader className="flex justify-between">
         <p className="text-2xl font-semibold">{name}</p>
-        <IconButton aria-label="delete" onClick={onDelete}>
+        <IconButton
+          aria-label="edit"
+          onClick={onSetCurrentContact}
+          disabled={shouldBeDisabled}
+        >
+          <MdEdit aria-label="delete" />
+        </IconButton>
+        <IconButton
+          aria-label="delete"
+          onClick={onDelete}
+          disabled={shouldBeDisabled}
+        >
           <DeleteIcon />
         </IconButton>
       </CardHeader>
