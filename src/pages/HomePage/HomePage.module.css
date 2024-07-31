@@ -1,5 +1,11 @@
 .welcome {
   text-align: center;
   font-size: 42px;
-  margin-top: 20vh;
+  margin-top: 30vh;
+}
+
+.secondary {
+  text-align: center;
+  font-size: 28px;
+  margin-top: 20px;
 }
