@@ -7,6 +7,8 @@ import {
   Button,
 } from "@nextui-org/react";
 
+import { FaUserAlt } from "react-icons/fa";
+
 export default function ModalComponent({ isOpen, onClose, onDelete }) {
   return (
     <Modal backdrop={"blur"} isOpen={isOpen} onClose={onClose}>
@@ -20,17 +22,19 @@ export default function ModalComponent({ isOpen, onClose, onDelete }) {
               <p>Are you sure that you want to delete the contact?</p>
             </ModalBody>
             <ModalFooter>
-              <Button color="danger" variant="light" onPress={onClose}>
+              <Button color="primary" variant="light" onPress={onClose}>
                 Close
               </Button>
               <Button
-                color="primary"
+                color="danger"
+                variant="bordered"
+                startContent={<FaUserAlt />}
                 onPress={() => {
                   onDelete();
                   onClose();
                 }}
               >
-                Delete
+                Delete user
               </Button>
             </ModalFooter>
           </>
