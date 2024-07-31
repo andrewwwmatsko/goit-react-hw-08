@@ -38,20 +38,22 @@ export default function Contact({ contactInfo: { name, number, id } }) {
     <Card className="max-w-[400px]">
       <CardHeader className="flex justify-between">
         <p className="text-2xl font-semibold">{name}</p>
-        <IconButton
-          aria-label="edit"
-          onClick={onSetCurrentContact}
-          disabled={shouldBeDisabled}
-        >
-          <MdEdit aria-label="delete" />
-        </IconButton>
-        <IconButton
-          aria-label="delete"
-          onClick={onDelete}
-          disabled={shouldBeDisabled}
-        >
-          <DeleteIcon />
-        </IconButton>
+        <div className="flex gap-1">
+          <IconButton
+            aria-label="edit"
+            onClick={onSetCurrentContact}
+            disabled={shouldBeDisabled}
+          >
+            <MdEdit aria-label="delete" />
+          </IconButton>
+          <IconButton
+            aria-label="delete"
+            onClick={onDelete}
+            disabled={shouldBeDisabled}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </div>
       </CardHeader>
       <CardBody>
         <p className="text-2xl ">{number}</p>

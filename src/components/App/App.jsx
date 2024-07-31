@@ -43,10 +43,7 @@ export default function App() {
           <Route
             path="/contacts"
             element={
-              <PrivateRoute
-                component={<ContactsPage />}
-                redirectTo="/register"
-              />
+              <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
             }
           />
           <Route

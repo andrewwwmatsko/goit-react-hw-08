@@ -8,7 +8,11 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        call: "rgb(102, 187, 106)",
+      },
+    },
   },
   darkMode: "class",
   plugins: [nextui()],
