@@ -9,7 +9,7 @@ export const notifyOnContactRemove = () =>
     },
     iconTheme: {
       primary: "lightpink",
-      secondary: "#FFFAEE",
+      secondary: "#fff",
     },
   });
 

@@ -10,6 +10,7 @@ import { useId } from "react";
 import css from "./SearchBox.module.css";
 
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { TextField } from "@mui/material";
 
 export default function SearchBox() {
   const dispatch = useDispatch();
@@ -24,16 +25,16 @@ export default function SearchBox() {
 
   return (
     <div className={css.container}>
-      <label htmlFor={id}>Find contacts by name</label>
       <div className={css.inputWrapper}>
-        <input
-          className={css.search}
-          id={id}
-          type="text"
+        <TextField
+          fullWidth
+          name="name"
+          label="Search"
           value={value}
           onChange={(evt) => {
             dispatch(changeFilter(evt.target.value));
           }}
+          className="mb-10"
         />
         {value.length > 0 && (
           <button
@@ -41,7 +42,7 @@ export default function SearchBox() {
             type="button"
             onClick={handleClearInput}
           >
-            <AiOutlineCloseCircle size={16} />
+            <AiOutlineCloseCircle size={18} />
           </button>
         )}
       </div>

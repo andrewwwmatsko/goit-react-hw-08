@@ -15,9 +15,7 @@ export default function ModalComponent({ isOpen, onClose, onDelete }) {
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">
-              Are you sure?
-            </ModalHeader>
+            <ModalHeader className="flex flex-col gap-1">Really?</ModalHeader>
             <ModalBody>
               <p>Are you sure that you want to delete the contact?</p>
             </ModalBody>

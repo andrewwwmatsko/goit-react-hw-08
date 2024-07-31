@@ -1,6 +1,5 @@
-import { Field, Formik, Form, ErrorMessage } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useId } from "react";
 import LoadingButton from "@mui/lab/LoadingButton";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -8,27 +7,13 @@ import { register } from "../../redux/auth/opeartions";
 
 import css from "./RegisterForm.module.css";
 import { selectLoading } from "../../redux/auth/selectors";
+import { TextField } from "@mui/material";
 
 export default function RegisterForm() {
   const loading = useSelector(selectLoading);
   const dispatch = useDispatch();
 
-  const nameId = useId();
-  const emailId = useId();
-  const passwordId = useId();
-
-  const handleSubmit = (values, action) => {
-    dispatch(
-      register({
-        name: values.name.trim(),
-        email: values.email.trim(),
-        password: values.password.trim(),
-      })
-    );
-    action.resetForm();
-  };
-
-  const FeedbackSchema = Yup.object().shape(
+  const ValidationSchema = Yup.object().shape(
     {
       name: Yup.string("Must be a string!")
         .min(3, "Too short!")
@@ -40,59 +25,75 @@ export default function RegisterForm() {
     { strict: true }
   );
 
+  const formik = useFormik({
+    initialValues: { name: "", email: "", password: "" },
+
+    validationSchema: ValidationSchema,
+    onSubmit: (values, action) => {
+      dispatch(
+        register({
+          name: values.name.trim(),
+          email: values.email.trim(),
+          password: values.password.trim(),
+        })
+      );
+      action.resetForm();
+    },
+  });
+
   return (
     <>
-      <Formik
-        initialValues={{ name: "", email: "", password: "" }}
-        onSubmit={handleSubmit}
-        validationSchema={FeedbackSchema}
-      >
-        <Form className={css.form}>
-          <h2 className={css.heading}>Registration</h2>
-          <div className={css.inputWrapper}>
-            <label htmlFor={nameId} className={css.label}>
-              Name
-            </label>
-            <Field id={nameId} name="name" className={css.input} />
-            <ErrorMessage name="name" component="span" className={css.error} />
-          </div>
+      <form onSubmit={formik.handleSubmit} className={css.form}>
+        <h2 className="font-mono mb-5 text-2xl">Registration</h2>
 
-          <div className={css.inputWrapper}>
-            <label htmlFor={emailId} className={css.label}>
-              Email
-            </label>
-            <Field id={emailId} name="email" className={css.input} />
-            <ErrorMessage name="email" component="span" className={css.error} />
-          </div>
+        <TextField
+          fullWidth
+          id="name"
+          name="name"
+          label="Name"
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.name && Boolean(formik.errors.name)}
+          helperText={formik.touched.name && formik.errors.name}
+          className="mb-10"
+        />
 
-          <div className={css.inputWrapper}>
-            <label htmlFor={passwordId} className={css.label}>
-              Password
-            </label>
-            <Field
-              id={passwordId}
-              type="password"
-              name="password"
-              className={css.input}
-            />
-            <ErrorMessage
-              name="password"
-              component="span"
-              className={css.error}
-            />
-          </div>
+        <TextField
+          fullWidth
+          id="email"
+          name="email"
+          label="Email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
+        />
 
-          <LoadingButton
-            type="submit"
-            loading={loading}
-            loadingIndicator="Loading…"
-            variant="outlined"
-            className={css.btn}
-          >
-            <span>Register</span>
-          </LoadingButton>
-        </Form>
-      </Formik>
+        <TextField
+          fullWidth
+          id="password"
+          name="password"
+          label="Password"
+          type="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+        />
+
+        <LoadingButton
+          type="submit"
+          loading={loading}
+          loadingIndicator="Loading…"
+          variant="outlined"
+          className={css.btn}
+        >
+          <span>Register</span>
+        </LoadingButton>
+      </form>
     </>
   );
 }
