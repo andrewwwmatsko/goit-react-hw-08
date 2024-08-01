@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { logout } from "../auth/opeartions";
+import { logout } from "../auth/operations";
 
 import {
   fetchContacts,

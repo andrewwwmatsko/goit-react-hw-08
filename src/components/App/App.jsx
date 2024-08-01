@@ -9,7 +9,7 @@ import { IoCloseCircleSharp } from "react-icons/io5";
 
 import AppBar from "../AppBar/AppBar";
 import Layout from "../Layout/Layout";
-import { refreshUser } from "../../redux/auth/opeartions";
+import { refreshUser } from "../../redux/auth/operations";
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const ContactsPage = lazy(() =>
   import("../../pages/ContactsPage/ContactsPage")

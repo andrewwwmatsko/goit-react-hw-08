@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { IoLogOut } from "react-icons/io5";
 
-import { logout } from "../../redux/auth/opeartions";
+import { logout } from "../../redux/auth/operations";
 import { selectUser } from "../../redux/auth/selectors";
 
 import css from "./UserMenu.module.css";
