@@ -6,14 +6,14 @@ import { Button, TextField } from "@mui/material";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { editContact } from "../../redux/contacts/contactsOps";
+import { editContact } from "../../redux/contacts/operations";
 
 import {
   selectCurrentContact,
   selectLoading,
 } from "../../redux/contacts/selectors";
 
-import { setCurrentContact } from "../../redux/contacts/contactsSlice";
+import { setCurrentContact } from "../../redux/contacts/slice";
 
 import css from "./EditForm.module.css";
 

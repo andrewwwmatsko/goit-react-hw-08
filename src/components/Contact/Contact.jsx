@@ -6,12 +6,12 @@ import { Card, CardHeader, CardBody } from "@nextui-org/react";
 
 import ModalComponent from "../ModalComponent/ModalComponent";
 
-import { deleteContact } from "../../redux/contacts/contactsOps";
+import { deleteContact } from "../../redux/contacts/operations";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton } from "@mui/material";
 import { MdEdit } from "react-icons/md";
-import { setCurrentContact } from "../../redux/contacts/contactsSlice";
+import { setCurrentContact } from "../../redux/contacts/slice";
 import { selectCurrentContact } from "../../redux/contacts/selectors";
 
 export default function Contact({ contactInfo: { name, number, id } }) {

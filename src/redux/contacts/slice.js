@@ -7,7 +7,7 @@ import {
   addContact,
   deleteContact,
   editContact,
-} from "../contacts/contactsOps";
+} from "./operations";
 
 const contactsSlice = createSlice({
   name: "contacts",
