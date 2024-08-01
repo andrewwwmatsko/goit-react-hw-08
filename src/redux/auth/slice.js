@@ -12,7 +12,7 @@ const slice = createSlice({
     isLoggedIn: false,
     isRefreshing: false,
     isLoading: false,
-    isError: null,
+    isError: "",
   },
   extraReducers: (builder) => {
     builder
@@ -22,7 +22,7 @@ const slice = createSlice({
       .addCase(register.fulfilled, (state, { payload }) => {
         state.isLoggedIn = true;
         state.isLoading = false;
-        state.isError = null;
+        state.isError = "";
         state.token = payload.token;
         state.user = payload.user;
       })
@@ -40,7 +40,7 @@ const slice = createSlice({
         state.isLoading = false;
         state.token = payload.token;
         state.user = payload.user;
-        state.isError = null;
+        state.isError = "";
       })
       .addCase(login.rejected, (state, { payload }) => {
         state.isLoggedIn = false;
@@ -78,10 +78,10 @@ const slice = createSlice({
         state.isLoggedIn = true;
         state.isLoading = false;
         state.user = payload;
-        state.isError = null;
+        state.isError = "";
       })
-      .addCase(refreshUser.rejected, (state) => {
-        state.isError = true;
+      .addCase(refreshUser.rejected, (state, { payload }) => {
+        state.isError = payload;
         state.isRefreshing = false;
       });
   },

@@ -3,7 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { lazy, Suspense, useEffect } from "react";
 
-import { Toaster } from "react-hot-toast";
+import toast, { ToastBar, Toaster } from "react-hot-toast";
+
+import { IoCloseCircleSharp } from "react-icons/io5";
 
 import AppBar from "../AppBar/AppBar";
 import Layout from "../Layout/Layout";
@@ -66,7 +68,23 @@ export default function App() {
           />
         </Routes>
       </Suspense>
-      <Toaster />
+      <Toaster>
+        {(t) => (
+          <ToastBar toast={t}>
+            {({ icon, message }) => (
+              <>
+                {icon}
+                {message}
+                {t.type !== "loading" && (
+                  <button onClick={() => toast.dismiss(t.id)}>
+                    <IoCloseCircleSharp />
+                  </button>
+                )}
+              </>
+            )}
+          </ToastBar>
+        )}
+      </Toaster>
     </Layout>
   );
 }

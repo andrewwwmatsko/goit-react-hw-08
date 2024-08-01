@@ -11,7 +11,12 @@ import { FaUserAlt } from "react-icons/fa";
 
 export default function ModalComponent({ isOpen, onClose, onDelete }) {
   return (
-    <Modal backdrop={"blur"} isOpen={isOpen} onClose={onClose}>
+    <Modal
+      backdrop={"blur"}
+      placement="center"
+      isOpen={isOpen}
+      onClose={onClose}
+    >
       <ModalContent>
         {(onClose) => (
           <>

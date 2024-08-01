@@ -19,3 +19,8 @@
     padding: 8px;
   }
 }
+
+.isActive {
+  transform: scale(1.05);
+  font-weight: 600;
+}

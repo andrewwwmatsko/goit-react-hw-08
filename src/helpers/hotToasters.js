@@ -36,3 +36,8 @@ export const notifyOnLogOut = () =>
       color: "#fff",
     },
   });
+
+export const notifyOnError = (message) =>
+  toast.error(`${message}. Please try again.`, {
+    duration: 8000,
+  });
