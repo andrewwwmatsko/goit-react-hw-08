@@ -18,10 +18,12 @@ const RegisterPage = lazy(() =>
   import("../../pages/RegisterPage/RegisterPage")
 );
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
+
 import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import RefreshingUserLayout from "../RefreshingUserLayout/RefreshingUserLayout";
 import Loader from "../Loader/Loader";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 
@@ -66,6 +68,7 @@ export default function App() {
               />
             }
           />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
       <Toaster>
