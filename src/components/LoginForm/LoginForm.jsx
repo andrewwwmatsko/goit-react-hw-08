@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import LoadingButton from "@mui/lab/LoadingButton";
 
-import { login } from "../../redux/auth/opeartions";
+import { login } from "../../redux/auth/operations";
 import { selectLoading } from "../../redux/auth/selectors";
 
 import css from "./LoginForm.module.css";

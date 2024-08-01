@@ -3,11 +3,12 @@ import * as Yup from "yup";
 import LoadingButton from "@mui/lab/LoadingButton";
 
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../../redux/auth/opeartions";
+import { register } from "../../redux/auth/operations";
 
-import css from "./RegisterForm.module.css";
 import { selectLoading } from "../../redux/auth/selectors";
 import { TextField } from "@mui/material";
+
+import css from "./RegistrationForm.module.css";
 
 export default function RegisterForm() {
   const loading = useSelector(selectLoading);
