@@ -12,12 +12,13 @@ import { selectCurrentContact } from "../../redux/contacts/selectors";
 import { useState } from "react";
 import {
   Card,
-  CardActionArea,
   CardActions,
   CardContent,
   IconButton,
   Typography,
 } from "@mui/material";
+
+import css from "./Contact.module.css";
 
 export default function Contact({ contactInfo: { name, number, id } }) {
   const currentContact = useSelector(selectCurrentContact);
@@ -63,15 +64,7 @@ export default function Contact({ contactInfo: { name, number, id } }) {
               marginBottom: "20px",
             }}
           >
-            <p
-              style={{
-                fontWeight: 600,
-                fontSize: "1.5rem",
-                lineHeight: "2rem",
-              }}
-            >
-              {name}
-            </p>
+            <p className={css.text}>{name}</p>
             <CardActions sx={{ padding: 0 }}>
               <IconButton
                 aria-label="edit"

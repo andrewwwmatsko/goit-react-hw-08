@@ -17,6 +17,12 @@
   gap: 20px;
 }
 
+.title {
+  font-weight: 500;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
 .button {
   font-size: 18px;
   font-weight: 500;

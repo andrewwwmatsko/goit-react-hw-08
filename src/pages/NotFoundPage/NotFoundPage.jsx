@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 
 import imgUrl from "../../images/404.png";
 
+import css from "./NotFoundPage.module.css";
+
 export default function NotFoundPage() {
   const [calldown, setCalldown] = useState(10);
   const navigate = useNavigate();
@@ -25,20 +27,14 @@ export default function NotFoundPage() {
 
   return (
     <main>
-      <section className="">
-        <h2 className="text-center font-mono text-4xl md:text-6xl font-semibold tracking-wide mt-16">
-          Oops
-        </h2>
-        <img
-          src={imgUrl}
-          alt="123"
-          className="sm:w-80 md:w-2/4 2xl:w-2/3 my-0 mx-auto block"
-        />
-        <p className="text-center font-mono text-lg mt-16">
+      <section>
+        <h2 className={css.title}>Oops</h2>
+        <img src={imgUrl} alt="123" className={css.img} />
+        <p className={css.text}>
           You are being redirected to the
           <Link className="underline" to="/">
             Home page
-          </Link>{" "}
+          </Link>
           after {calldown} seconds
         </p>
       </section>

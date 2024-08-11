@@ -44,7 +44,7 @@ export default function LoginForm() {
   return (
     <>
       <form onSubmit={formik.handleSubmit} className={css.form}>
-        <h2 className="font-mono mb-5 text-2xl">Login</h2>
+        <h2 className={css.title}>Login</h2>
         <TextField
           fullWidth
           id="email"

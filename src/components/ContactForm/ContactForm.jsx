@@ -47,7 +47,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={formik.handleSubmit} className={css.container}>
-      <h2 className="font-mono mb-1 text-2xl">Add contact</h2>
+      <h2 className={css.title}>Add contact</h2>
 
       <TextField
         fullWidth

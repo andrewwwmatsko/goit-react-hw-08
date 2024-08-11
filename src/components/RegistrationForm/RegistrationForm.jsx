@@ -45,7 +45,7 @@ export default function RegisterForm() {
   return (
     <>
       <form onSubmit={formik.handleSubmit} className={css.form}>
-        <h2 className="font-mono mb-5 text-2xl">Registration</h2>
+        <h2 className={css.title}>Registration</h2>
 
         <TextField
           fullWidth
@@ -57,7 +57,6 @@ export default function RegisterForm() {
           onBlur={formik.handleBlur}
           error={formik.touched.name && Boolean(formik.errors.name)}
           helperText={formik.touched.name && formik.errors.name}
-          className="mb-10"
         />
 
         <TextField

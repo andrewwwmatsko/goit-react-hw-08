@@ -79,8 +79,11 @@ export default function App() {
                 {icon}
                 {message}
                 {t.type !== "loading" && (
-                  <button onClick={() => toast.dismiss(t.id)}>
-                    <IoCloseCircleSharp />
+                  <button
+                    onClick={() => toast.dismiss(t.id)}
+                    style={{ backgroundColor: "transparent", border: "none" }}
+                  >
+                    <IoCloseCircleSharp size={16} />
                   </button>
                 )}
               </>

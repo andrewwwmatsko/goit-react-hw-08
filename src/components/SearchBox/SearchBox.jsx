@@ -28,7 +28,6 @@ export default function SearchBox() {
           onChange={(evt) => {
             dispatch(changeFilter(evt.target.value));
           }}
-          className="mb-10"
         />
         {value.length > 0 && (
           <button

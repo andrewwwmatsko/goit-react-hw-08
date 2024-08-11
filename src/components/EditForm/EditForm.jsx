@@ -60,7 +60,7 @@ export default function EditForm() {
 
   return (
     <form onSubmit={formik.handleSubmit} className={css.container}>
-      <h2 className="font-mono mb-1 text-2xl">Edit contact</h2>
+      <h2 className={css.title}>Edit contact</h2>
 
       <TextField
         fullWidth
@@ -109,6 +109,7 @@ export default function EditForm() {
           sx={{ fontSize: 15 }}
           className={css.cancelButton}
           onClick={onCancelClick}
+          disabled={loading}
         >
           Cancel
         </Button>
