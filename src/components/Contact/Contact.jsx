@@ -4,14 +4,20 @@ import ModalComponent from "../ModalComponent/ModalComponent";
 
 import { deleteContact } from "../../redux/contacts/operations";
 
-import DeleteIcon from "@mui/icons-material/Delete";
-import { IconButton } from "@mui/material";
-
 import { MdEdit } from "react-icons/md";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { setCurrentContact } from "../../redux/contacts/slice";
 import { selectCurrentContact } from "../../redux/contacts/selectors";
 import { useState } from "react";
+import {
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  IconButton,
+  Typography,
+} from "@mui/material";
 
 export default function Contact({ contactInfo: { name, number, id } }) {
   const currentContact = useSelector(selectCurrentContact);
@@ -39,22 +45,56 @@ export default function Contact({ contactInfo: { name, number, id } }) {
 
   return (
     <>
-      <p className="text-2xl font-semibold">{name}</p>
-      <button
-        type="button"
-        aria-label="edit"
-        onClick={onSetCurrentContact}
-        disabled={shouldBeDisabled}
+      <Card
+        sx={{
+          maxWidth: 345,
+          borderRadius: "14px",
+        }}
       >
-        <MdEdit aria-label="delete" />
-      </button>
-      <button
-        type="button"
-        aria-label="delete"
-        onClick={onDelete}
-        disabled={shouldBeDisabled}
-      ></button>
-      <p className="text-2xl ">{number}</p>
+        <CardContent sx={{ padding: "12px" }}>
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontWeight: 600,
+              marginBottom: "20px",
+            }}
+          >
+            <p
+              style={{
+                fontWeight: 600,
+                fontSize: "1.5rem",
+                lineHeight: "2rem",
+              }}
+            >
+              {name}
+            </p>
+            <CardActions sx={{ padding: 0 }}>
+              <IconButton
+                aria-label="edit"
+                onClick={onSetCurrentContact}
+                disabled={shouldBeDisabled}
+              >
+                <MdEdit aria-label="delete" />
+              </IconButton>
+              <IconButton
+                aria-label="delete"
+                onClick={onDelete}
+                disabled={shouldBeDisabled}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </CardActions>
+          </Typography>
+          <Typography variant="h6" color="text.secondary" component="p">
+            {number}
+          </Typography>
+        </CardContent>
+      </Card>
+
       <ModalComponent
         isOpen={isModalOpen}
         onClose={closeModal}

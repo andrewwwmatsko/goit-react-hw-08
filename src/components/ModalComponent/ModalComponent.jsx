@@ -1,4 +1,3 @@
-import { BorderAllRounded, Padding } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -7,8 +6,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 import { styled } from "@mui/material/styles";
-
-// import { FaUserAlt } from "react-icons/fa";
 
 export default function ModalComponent({ isOpen, onClose, onDelete }) {
   const handleClose = () => {

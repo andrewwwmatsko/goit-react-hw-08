@@ -21,7 +21,8 @@ import css from "./ContactPage.module.css";
 
 export default function Contactspage() {
   const contacts = useSelector(selectFilteredContacts);
-  const isError = useSelector(selectError);
+  const error = useSelector(selectError);
+  console.log("Contactspage ~ error:", error);
 
   const currentContact = useSelector(selectCurrentContact);
 
@@ -46,7 +47,7 @@ export default function Contactspage() {
               <ContactList contacts={contacts} />
             </div>
           )}
-          {isError && <Error />}
+          {error && <Error errorMessage={error} />}
         </Layout>
       </section>
     </main>
