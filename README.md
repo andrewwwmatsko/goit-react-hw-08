@@ -22,7 +22,7 @@ Join this journey and enjoy a sleek UI that accompanies you every step of the wa
 
 ## Tech Stack
 
-**Client:** React, Redux, Redux Toolkit, JavaScript, TailwindCSS, NextUI, MaterialUI, Axios, Vite
+**Client:** React, Redux, Redux Toolkit, JavaScript, MaterialUI, Axios, REST API, Vite
 
 **Server:** Swagger
 
